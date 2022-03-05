@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 17:42:45 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/05 17:58:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,22 @@ typedef struct s_rules {
 	int	num_meals_to_eat;
 }	t_rules;
 
+typedef struct s_fork {
+	bool			is_taken;
+	pthread_mutex_t	lock;
+}	t_fork;
+
+typedef struct s_table {
+	t_rules		rules;
+	t_fork		*forks;
+}	t_table;
+
 /*---	General Purpose	---*/
 int		ft_atoi(char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 /*---	Set up			---*/
 t_rules	init_rules(int ac, char **av);
+t_fork	*init_forks(int num_philos);
 
 #endif

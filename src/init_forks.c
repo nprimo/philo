@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_forks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 17:25:01 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 17:55:23 by nprimo           ###   ########.fr       */
+/*   Created: 2022/03/05 17:51:15 by nprimo            #+#    #+#             */
+/*   Updated: 2022/03/05 18:01:48 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+t_fork	*init_forks(int num_philos)
 {
-	t_rules	rules;
 	t_fork	*forks;
 
-	if (ac == 5 || ac == 6)
-	{
-		printf("Run simulation\n");
-		rules = init_rules(ac, av);
-		forks = init_forks(rules.num_philo);
-	}
-	else
-		printf("Run ./philo with 4 or 5 args!\n");
-	return (0);
+	forks = ft_calloc(num_philos, sizeof(t_fork));
+	if (!forks)
+		return (NULL);
+	return (forks);
 }

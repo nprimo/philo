@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 17:25:01 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 17:55:23 by nprimo           ###   ########.fr       */
+/*   Created: 2022/02/28 18:10:48 by nprimo            #+#    #+#             */
+/*   Updated: 2022/02/28 18:53:16 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
-{
-	t_rules	rules;
-	t_fork	*forks;
+static void	ft_bzero(void *s, size_t n);
 
-	if (ac == 5 || ac == 6)
-	{
-		printf("Run simulation\n");
-		rules = init_rules(ac, av);
-		forks = init_forks(rules.num_philo);
-	}
-	else
-		printf("Run ./philo with 4 or 5 args!\n");
-	return (0);
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*obj;
+
+	obj = malloc(size * count);
+	if (obj == 0)
+		return (0);
+	ft_bzero(obj, count * size);
+	return (obj);
+}
+
+static void	ft_bzero(void *s, size_t n)
+{
+	memset(s, 0, n);
 }
