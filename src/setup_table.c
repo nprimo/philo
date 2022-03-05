@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_table.c                                       :+:      :+:    :+:   */
+/*   setup_table.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 18:11:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:19:04 by nprimo           ###   ########.fr       */
+/*   Created: 2022/03/05 18:20:04 by nprimo            #+#    #+#             */
+/*   Updated: 2022/03/05 18:22:51 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_table(int ac, char **av, t_table *table)
+t_table	setup_table(void)
 {
-	table->rules = init_rules(ac, av);
-	table->forks = init_forks(table->rules.num_philo);
-	if (!table->forks)
-		return (0);
-	return (1);
+	t_table	table;
+
+	table.forks = NULL;
+	return (table);
 }
