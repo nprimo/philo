@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 17:58:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/05 18:14:39 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	*ft_calloc(size_t count, size_t size);
 /*---	Set up			---*/
 t_rules	init_rules(int ac, char **av);
 t_fork	*init_forks(int num_philos);
+void	init_table(int ac, char **av, t_table *table);
 
 #endif
