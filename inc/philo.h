@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:25:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/05 18:44:52 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,25 @@ typedef struct s_fork {
 	pthread_mutex_t	lock;
 }	t_fork;
 
+typedef enum e_status {
+	THINKING = 0,
+	SLEEPING,
+	EATING,
+	HAS_FORK,
+	DEAD
+}	t_status;
+
+typedef struct s_philo {
+	int			id;
+	t_status	status;
+	t_rules		rules;
+	t_fork		*forks[2];
+}	t_philo;
+
 typedef struct s_table {
 	t_rules		rules;
 	t_fork		*forks;
+	t_philo		*philos;
 }	t_table;
 
 /*---	General Purpose	---*/
@@ -48,6 +64,7 @@ void	*ft_calloc(size_t count, size_t size);
 t_table	setup_table(void);
 t_rules	init_rules(int ac, char **av);
 t_fork	*init_forks(int num_philos);
+t_philo	*init_philos(t_rules rules, t_fork *forks);
 int		init_table(int ac, char **av, t_table *table);
 
 /*---	Cleaning		---*/

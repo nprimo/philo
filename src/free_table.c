@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:25:25 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:26:11 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/05 18:45:57 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@ int	free_table(t_table *table)
 {
 	if (table->forks)
 		free(table->forks);
-	return (1);	
+	if (table->philos)
+		free(table->philos);
+	return (1);
 }
