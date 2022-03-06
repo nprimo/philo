@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 17:31:30 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 18:07:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef enum e_status {
 
 typedef struct s_philo {
 	int			id;
+	pthread_t	tid;
 	int			last_meal;
 	t_status	status;
 	t_rules		rules;
@@ -63,6 +64,7 @@ typedef struct s_table {
 	t_rules		rules;
 	t_fork		*forks;
 	t_philo		*philos;
+	void		(*destroy)();
 }	t_table;
 
 /*---	General Purpose	---*/
@@ -72,18 +74,17 @@ void	*ft_calloc(size_t count, size_t size);
 /*---	Time function	---*/
 int		get_time_now(void);
 
+/*---	Table			---*/
+t_table	*table(void);
+
 /*---	Set up			---*/
-t_table	setup_table(void);
-t_rules	init_rules(int ac, char **av);
-t_fork	*init_forks(int num_philos);
-t_philo	*init_philos(t_rules rules, t_fork *forks);
-int		init_table(int ac, char **av, t_table *table);
+int		init_table(int ac, char **av);
 
 /*---	Routine			---*/
 void	*philo_routine(void	*philo_void);
-int		run_simulation(t_table *table);
+int		run_simulation(void);
 
 /*---	Cleaning		---*/
-int		free_table(t_table *table);
+int		free_table(void);
 
 #endif

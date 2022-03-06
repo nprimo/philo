@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:01 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 15:31:46 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 18:02:14 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	t_table		table;
-
 	if (ac == 5 || ac == 6)
 	{
-		table = setup_table();
-		if (!init_table(ac, av, &table))
-			return (free_table(&table));
-		run_simulation(&table);
-		free_table(&table);
+		if (!init_table(ac, av))
+			return (free_table());
+		run_simulation();
+		free_table();
 	}
 	else
 		printf("Run ./philo with 4 or 5 args!\n");
