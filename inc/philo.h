@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 18:07:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 18:14:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_table {
 	t_rules		rules;
 	t_fork		*forks;
 	t_philo		*philos;
-	void		(*destroy)();
 }	t_table;
 
 /*---	General Purpose	---*/
