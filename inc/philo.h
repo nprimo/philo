@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 15:23:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 17:31:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdbool.h>
+
+# define MILLI_TO_MICRO	1000
+
+# define MSG_THINKING "is thinking"
+# define MSG_SLEEPING "is sleeping"
+# define MSG_EATING "is eating"
+# define MSG_HAS_FORK "has taken a fork"
+# define MSG_DEAD "died"
 
 typedef struct s_rules {
 	int	num_philo;
@@ -45,6 +53,7 @@ typedef enum e_status {
 
 typedef struct s_philo {
 	int			id;
+	int			last_meal;
 	t_status	status;
 	t_rules		rules;
 	t_fork		*forks[2];

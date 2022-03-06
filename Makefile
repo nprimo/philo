@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+         #
+#    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 19:45:47 by nprimo            #+#    #+#              #
-#    Updated: 2022/03/01 12:43:35 by nprimo           ###   ########.fr        #
+#    Updated: 2022/03/06 17:30:23 by nprimo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = philo
 SRC = src
 OBJ = obj
 INC = inc
-SRCS = $(wildcard $(SRC)/*c)
+SRCS = $(wildcard $(SRC)/*.c)
 OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
 $(OBJ)/%.o: $(SRC)/%.c
