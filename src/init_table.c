@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:11:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 18:05:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 18:10:35 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 static t_rules	init_rules(int ac, char **av);
 static t_fork	*init_forks(int num_philos);
 static t_philo	*init_philos(t_rules rules, t_fork *forks);
-
-t_table	*table(void)
-{
-	static t_table	table;
-
-	return (&table);	
-}
 
 int	init_table(int ac, char **av)
 {
