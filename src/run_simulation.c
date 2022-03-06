@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 15:22:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 15:32:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 16:27:02 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	run_simulation(t_table *table)
 			return (0);
 		i++;
 	}
+	free(tid);
 	return (1);
 }
