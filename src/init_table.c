@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:11:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 18:10:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 18:29:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static t_philo	*init_philos(t_rules rules, t_fork *forks);
 
 int	init_table(int ac, char **av)
 {
-	table()->rules = init_rules(ac, av);
+	(table()->rules) = init_rules(ac, av);
 	table()->forks = init_forks(table()->rules.num_philo);
 	if (!table()->forks)
 		return (0);
-	table()->philos = init_philos(table()->rules, table()->forks);
+	(table()->philos) = init_philos(table()->rules, table()->forks);
 	if (!table()->philos)
 		return (0);
 	return (1);
