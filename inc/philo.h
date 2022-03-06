@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:44:52 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:23:26 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		init_table(int ac, char **av, t_table *table);
 
 /*---	Routine			---*/
 void	*philo_routine(void	*philo_void);
+int		run_simulation(t_table *table);
 
 /*---	Cleaning		---*/
 int		free_table(t_table *table);
