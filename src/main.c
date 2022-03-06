@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:01 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:27:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:31:46 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 int	main(int ac, char **av)
 {
 	t_table		table;
-	pthread_t	id;
 
 	if (ac == 5 || ac == 6)
 	{
 		table = setup_table();
-		printf("Run simulation\n");
 		if (!init_table(ac, av, &table))
 			return (free_table(&table));
-		pthread_create(&id, NULL, philo_routine, &table.philos[0]);
+		run_simulation(&table);
 		free_table(&table);
 	}
 	else

@@ -6,13 +6,13 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 15:22:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 15:22:41 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:32:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	run_simulation(t_table *table)
+int	run_simulation(t_table *table)
 {
 	pthread_t	*tid;
 	int			i;
@@ -23,13 +23,16 @@ static int	run_simulation(t_table *table)
 	i = 0;
 	while (i < table->rules.num_philo)
 	{
-		pthread_create(&tid[i], NULL, philo_routine, &table->philos[i]);
+		if (pthread_create(&tid[i],
+				NULL, philo_routine, &table->philos[i]) != 0)
+			return (0);
 		i++;
 	}
 	i = 0;
 	while (i < table->rules.num_philo)
 	{
-		pthread_join(tid[i], NULL);
+		if (pthread_join(tid[i], NULL) != 0)
+			return (0);
 		i++;
 	}
 	return (1);

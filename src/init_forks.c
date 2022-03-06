@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:51:15 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/05 18:01:48 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/06 15:27:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_fork	*init_forks(int num_philos)
 	i = 0;
 	while (i < num_philos)
 	{
-		pthread_mutex_init(&forks[i].lock, NULL);
+		if (pthread_mutex_init(&forks[i].lock, NULL) != 0)
+			return (NULL);
 		i++;
 	}
 	return (forks);
