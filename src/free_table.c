@@ -14,8 +14,18 @@
 
 int	free_table(t_table *table)
 {
+	int	i;
+
 	if (table->forks)
+	{
+		i = 0;
+		while (i < table->rules.num_philo)
+		{
+			pthread_mutex_destroy(&table->forks[i].lock);
+			i++;
+		}
 		free(table->forks);
+	}
 	if (table->philos)
 		free(table->philos);
 	return (1);

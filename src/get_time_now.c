@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_time_now.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 18:10:48 by nprimo            #+#    #+#             */
-/*   Updated: 2022/02/28 18:53:16 by nprimo           ###   ########.fr       */
+/*   Created: 2022/03/01 12:42:58 by nprimo            #+#    #+#             */
+/*   Updated: 2022/03/01 13:33:06 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	ft_bzero(void *s, size_t n);
-
-void	*ft_calloc(size_t count, size_t size)
+int	get_time_now(void)
 {
-	void	*obj;
+	struct timeval	now;
+	int				now_msec;
 
-	obj = malloc(size * count);
-	if (!obj)
-		return (NULL);
-	ft_bzero(obj, count * size);
-	return (obj);
-}
-
-static void	ft_bzero(void *s, size_t n)
-{
-	memset(s, 0, n);
+	if (gettimeofday(&now, NULL) == 0)
+		now_msec = now.tv_sec * 1000 + now.tv_usec / 1000;
+	else
+		now_msec = 0;
+	return (now_msec);
 }

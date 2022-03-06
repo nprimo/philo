@@ -15,9 +15,16 @@
 t_fork	*init_forks(int num_philos)
 {
 	t_fork	*forks;
+	int		i;
 
 	forks = ft_calloc(num_philos, sizeof(t_fork));
 	if (!forks)
 		return (NULL);
+	i = 0;
+	while (i < num_philos)
+	{
+		pthread_mutex_init(&forks[i].lock, NULL);
+		i++;
+	}
 	return (forks);
 }

@@ -14,7 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	t_table	table;
+	t_table		table;
+	pthread_t	id;
 
 	if (ac == 5 || ac == 6)
 	{
@@ -22,6 +23,7 @@ int	main(int ac, char **av)
 		printf("Run simulation\n");
 		if (!init_table(ac, av, &table))
 			return (free_table(&table));
+		pthread_create(&id, NULL, philo_routine, &table.philos[0]);
 		free_table(&table);
 	}
 	else

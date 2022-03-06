@@ -17,13 +17,6 @@ void	*philo_routine(void	*philo_void)
 	t_philo	*philo;
 
 	philo = (t_philo *) philo_void;
-	while (philo->status != DEAD)
-	{
-		if (get_forks(philo))
-		{
-			eat(philo);
-			sleep(philo);
-		}
-	}
+	printf("%d %d %s\n", get_time_now(), philo->id, "is thinking");
 	return (NULL);
 }

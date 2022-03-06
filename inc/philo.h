@@ -60,12 +60,18 @@ typedef struct s_table {
 int		ft_atoi(char *str);
 void	*ft_calloc(size_t count, size_t size);
 
+/*---	Time function	---*/
+int		get_time_now(void);
+
 /*---	Set up			---*/
 t_table	setup_table(void);
 t_rules	init_rules(int ac, char **av);
 t_fork	*init_forks(int num_philos);
 t_philo	*init_philos(t_rules rules, t_fork *forks);
 int		init_table(int ac, char **av, t_table *table);
+
+/*---	Routine			---*/
+void	*philo_routine(void	*philo_void);
 
 /*---	Cleaning		---*/
 int		free_table(t_table *table);
