@@ -6,13 +6,13 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 13:27:23 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 13:29:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	*change_status(t_philo *philo, t_status new_status);
+static void	change_status(t_philo *philo, t_status new_status);
 static int	philo_eat(t_philo *philo);
 static int	philo_sleep(t_philo *philo);
 
@@ -32,6 +32,7 @@ void	*philo_routine(void	*philo_void)
 		change_status(philo, THINKING);
 	}
 	change_status(philo, DEAD);
+
 	return (NULL);
 }
 
@@ -47,7 +48,10 @@ static int	philo_eat(t_philo *philo)
 	change_status(philo, EATING);
 	usleep(time_eating * MILLI_TO_MICRO);
 	if (time_eating != philo->rules.time_to_eat)
+	{
+		change_status(philo, DEAD);
 		return (0);
+	}
 	return (1);
 }
 
@@ -70,13 +74,17 @@ static int	philo_sleep(t_philo *philo)
 		usleep(time_asleep * MILLI_TO_MICRO);
 	}
 	if (time_asleep != philo->rules.time_to_sleep)
+	{
+		change_status(philo, DEAD);
 		return (0);
+	}
+	else
+		change_status(philo, THINKING);
 	return (1);
 }
 
-static void	*change_status(t_philo *philo, t_status new_status)
+static void	change_status(t_philo *philo, t_status new_status)
 {
 	philo->status = new_status;
 	printf("%d %d %s\n", get_time_now(), philo->id, table()->msg[new_status]);
-	return (NULL);
 }
