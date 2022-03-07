@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:11:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 18:29:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 10:32:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	init_table(int ac, char **av)
 	(table()->philos) = init_philos(table()->rules, table()->forks);
 	if (!table()->philos)
 		return (0);
+	(table()->msg[THINKING]) = MSG_THINKING;
+	(table()->msg[SLEEPING]) = MSG_SLEEPING;
+	(table()->msg[EATING]) = MSG_EATING;
+	(table()->msg[HAS_FORK]) = MSG_HAS_FORK;
+	(table()->msg[DEAD]) = MSG_DEAD;
 	return (1);
 }
 

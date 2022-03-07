@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/06 17:26:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 10:33:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,6 @@ static int	philo_sleep(t_philo *philo)
 
 static void	change_status(t_philo *philo, t_status new_status)
 {
-	char	*msg;
-
-	if (new_status == THINKING)
-		msg = MSG_THINKING;
-	if (new_status == SLEEPING)
-		msg = MSG_SLEEPING;
-	if (new_status == EATING)
-		msg = MSG_EATING;
-	if (new_status == HAS_FORK)
-		msg = MSG_HAS_FORK;
-	if (new_status == DEAD)
-		msg = MSG_DEAD;
 	philo->status = new_status;
-	printf("%d %d %s\n", get_time_now(), philo->id, msg);
+	printf("%d %d %s\n", get_time_now(), philo->id, table()->msg[new_status]);
 }
