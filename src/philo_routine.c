@@ -6,15 +6,15 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 12:38:03 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 12:48:49 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static void	*change_status(t_philo *philo, t_status new_status);
-// static int	get_fork(t_philo *philo, int id_fork);
-// static int	drop_fork(t_philo *philo, int id_fork);
+static int	get_fork(t_fork *fork, t_philo *philo);
+// static int	drop_fork(t_fork *fork);
 static int	philo_eat(t_philo *philo);
 static int	philo_sleep(t_philo *philo);
 
@@ -24,38 +24,43 @@ void	*philo_routine(void	*philo_void)
 
 	philo = (t_philo *) philo_void;
 	philo->last_meal = get_time_now();
+	change_status(philo, THINKING);
 	while ((get_time_now() - philo->last_meal) < philo->rules.time_to_die)
 	{
-		if (!philo_eat(philo))
-			return (change_status(philo, DEAD));
-		if (!philo_sleep(philo))
-			return (change_status(philo, DEAD));
-		change_status(philo, THINKING);
+		if (get_fork(philo->forks[philo->first_fork], philo) == 1
+			&& get_fork(philo->forks[philo->second_fork], philo) == 1)
+		{
+			if (!philo_eat(philo))
+				return (change_status(philo, DEAD));
+			if (!philo_sleep(philo))
+				return (change_status(philo, DEAD));
+			change_status(philo, THINKING);
+		}
 	}
 	change_status(philo, DEAD);
 	return (NULL);
 }
 
-// static int	get_fork(t_philo *philo, int id_fork)
-// {
-// 	int		got_fork;
+static int	get_fork(t_fork *fork, t_philo *philo)
+{
+	int		got_fork;
 
-// 	got_fork = 0;
-// 	if (pthread_mutex_lock(&philo->forks[id_fork]->lock) == 0)
-// 	{
-// 		if (philo->forks[id_fork]->is_taken == false)
-// 		{
-// 			philo->forks[id_fork]->is_taken = true;
-// 			change_status(philo, HAS_FORK);
-// 			got_fork = 1;
-// 		}
-// 		if (pthread_mutex_unlock(&philo->forks[id_fork]->lock) == 0)
-// 			return (got_fork);
-// 		else
-// 			return (-1);
-// 	}
-// 	return (-1);
-// }
+	got_fork = 0;
+	if (pthread_mutex_lock(&fork->lock) == 0)
+	{
+		if (fork->is_taken == false)
+		{
+			fork->is_taken = true;
+			change_status(philo, HAS_FORK);
+			got_fork = 1;
+		}
+		if (pthread_mutex_unlock(&fork->lock) == 0)
+			return (got_fork);
+		else
+			return (-1);
+	}
+	return (-1);
+}
 
 // static int	drop_fork(t_philo *philo, int id_fork)
 // {
