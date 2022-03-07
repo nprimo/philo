@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:34:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:44:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 17:03:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	philo_try_to_eat(t_philo *philo)
 {
 	if (get_fork(philo->forks[0], philo))
 	{
-		change_philo_status(philo, HAS_FORK);
 		if (get_fork(philo->forks[1], philo))
 		{
 			change_philo_status(philo, HAS_FORK);
