@@ -6,13 +6,15 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 10:33:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 12:38:03 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	change_status(t_philo *philo, t_status new_status);
+static void	*change_status(t_philo *philo, t_status new_status);
+// static int	get_fork(t_philo *philo, int id_fork);
+// static int	drop_fork(t_philo *philo, int id_fork);
 static int	philo_eat(t_philo *philo);
 static int	philo_sleep(t_philo *philo);
 
@@ -22,12 +24,54 @@ void	*philo_routine(void	*philo_void)
 
 	philo = (t_philo *) philo_void;
 	philo->last_meal = get_time_now();
-	if (!philo_eat(philo))
-		return (NULL);
-	if (philo_sleep(philo))
-		return (NULL);
+	while ((get_time_now() - philo->last_meal) < philo->rules.time_to_die)
+	{
+		if (!philo_eat(philo))
+			return (change_status(philo, DEAD));
+		if (!philo_sleep(philo))
+			return (change_status(philo, DEAD));
+		change_status(philo, THINKING);
+	}
+	change_status(philo, DEAD);
 	return (NULL);
 }
+
+// static int	get_fork(t_philo *philo, int id_fork)
+// {
+// 	int		got_fork;
+
+// 	got_fork = 0;
+// 	if (pthread_mutex_lock(&philo->forks[id_fork]->lock) == 0)
+// 	{
+// 		if (philo->forks[id_fork]->is_taken == false)
+// 		{
+// 			philo->forks[id_fork]->is_taken = true;
+// 			change_status(philo, HAS_FORK);
+// 			got_fork = 1;
+// 		}
+// 		if (pthread_mutex_unlock(&philo->forks[id_fork]->lock) == 0)
+// 			return (got_fork);
+// 		else
+// 			return (-1);
+// 	}
+// 	return (-1);
+// }
+
+// static int	drop_fork(t_philo *philo, int id_fork)
+// {
+// 	if (pthread_mutex_lock(&philo->forks[id_fork]->lock) == 0)
+// 	{
+// 		if (philo->forks[id_fork]->is_taken == true)
+// 		{
+// 			philo->forks[id_fork]->is_taken = false;
+// 		}
+// 		if (pthread_mutex_unlock(&philo->forks[id_fork]->lock) == 0)
+// 			return (1);
+// 		else
+// 			return (-1);
+// 	}
+// 	return (-1);
+// }
 
 static int	philo_eat(t_philo *philo)
 {
@@ -41,10 +85,7 @@ static int	philo_eat(t_philo *philo)
 	change_status(philo, EATING);
 	usleep(time_eating * MILLI_TO_MICRO);
 	if (time_eating != philo->rules.time_to_eat)
-	{
-		change_status(philo, DEAD);
 		return (0);
-	}
 	return (1);
 }
 
@@ -67,17 +108,13 @@ static int	philo_sleep(t_philo *philo)
 		usleep(time_asleep * MILLI_TO_MICRO);
 	}
 	if (time_asleep != philo->rules.time_to_sleep)
-	{
-		change_status(philo, DEAD);
 		return (0);
-	}
-	else
-		change_status(philo, THINKING);
 	return (1);
 }
 
-static void	change_status(t_philo *philo, t_status new_status)
+static void	*change_status(t_philo *philo, t_status new_status)
 {
 	philo->status = new_status;
 	printf("%d %d %s\n", get_time_now(), philo->id, table()->msg[new_status]);
+	return (NULL);
 }
