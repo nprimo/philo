@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:11:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 11:34:30 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 13:22:27 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ static t_philo	*init_philos(t_rules rules, t_fork *forks)
 			philos[id - 1].forks[1] = &forks[0];
 		else
 			philos[id - 1].forks[1] = &forks[id];
-		philos[id - 1].first_fork = id % 2;
-		if (id % 2 == 0)
-			philos[id - 1].second_fork = 1;
-		else
-			philos[id - 1].second_fork = 0;
 		id++;
 	}
 	return (philos);
