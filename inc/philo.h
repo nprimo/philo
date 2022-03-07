@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 13:22:19 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:12:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef enum e_status {
 	SLEEPING,
 	EATING,
 	HAS_FORK,
-	DEAD
+	DEAD,
+	ERROR
 }	t_status;
 
 typedef struct s_philo {
@@ -74,15 +75,15 @@ void	*ft_calloc(size_t count, size_t size);
 /*---	Time function	---*/
 int		get_time_now(void);
 
-/*---	Table			---*/
+/*---	Table & Setup	---*/
 t_table	*table(void);
-
-/*---	Set up			---*/
 int		init_table(int ac, char **av);
 
 /*---	Routine			---*/
-void	*philo_routine(void	*philo_void);
 int		run_simulation(void);
+void	philo_try_to_eat(t_philo *philo);
+void	*philo_routine(void	*philo_void);
+void	change_philo_status(t_philo *philo, t_status new_status);
 
 /*---	Cleaning		---*/
 int		free_table(void);
