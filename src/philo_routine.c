@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 13:22:03 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 13:27:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	*philo_routine(void	*philo_void)
 	while ((get_time_now() - philo->last_meal) < philo->rules.time_to_die)
 	{
 		if (!philo_eat(philo))
-			return (change_status(philo, DEAD));
+			break ;
 		if (!philo_sleep(philo))
-			return (change_status(philo, DEAD));
+			break ;
 		change_status(philo, THINKING);
 	}
 	change_status(philo, DEAD);
