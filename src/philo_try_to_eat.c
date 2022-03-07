@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:34:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:15:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:44:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,26 @@ void	philo_try_to_eat(t_philo *philo)
 		{
 			change_philo_status(philo, HAS_FORK);
 			philo_eat(philo);
+			drop_fork(philo->forks[1], philo);
 		}
+		drop_fork(philo->forks[0], philo);
 	}
-	drop_fork(philo->forks[0], philo);
-	drop_fork(philo->forks[1], philo);
 }
 
 static bool	get_fork(t_fork *fork, t_philo *philo)
 {
+	bool	got_fork;
+
+	got_fork = false;
 	if (!pthread_mutex_lock(&fork->lock))
 	{
 		if (fork->is_taken == false)
+		{
 			fork->is_taken = true;
+			got_fork = true;
+		}
 		if (!pthread_mutex_unlock(&fork->lock))
-			return (fork->is_taken);
+			return (got_fork);
 	}
 	philo->status = ERROR;
 	return (0);
@@ -60,11 +66,8 @@ static void	philo_eat(t_philo *philo)
 {
 	int	time_eating;
 
-	if (philo->rules.time_to_die < philo->rules.time_to_eat)
-		time_eating = philo->rules.time_to_die;
-	else
-		time_eating = philo->rules.time_to_eat;
 	philo->last_meal = get_time_now();
+	time_eating = get_time_activity(philo, philo->rules.time_to_eat);
 	change_philo_status(philo, EATING);
 	usleep(time_eating * MILLI_TO_MICRO);
 }

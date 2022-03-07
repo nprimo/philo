@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:12:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:43:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int		run_simulation(void);
 void	philo_try_to_eat(t_philo *philo);
 void	*philo_routine(void	*philo_void);
 void	change_philo_status(t_philo *philo, t_status new_status);
+int		get_time_activity(t_philo *philo, int time_for_activity);
 
 /*---	Cleaning		---*/
 int		free_table(void);

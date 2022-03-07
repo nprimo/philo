@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:11:44 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:43:13 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,9 @@ static int	is_alive(t_philo *philo)
 
 static void	philo_sleep(t_philo *philo)
 {
-	int	time_left_to_eat;
 	int	time_asleep;
 
-	time_left_to_eat = philo->rules.time_to_die
-		- (get_time_now() - philo->last_meal);
-	if (time_left_to_eat > philo->rules.time_to_sleep)
-		time_asleep = philo->rules.time_to_sleep;
-	else if (time_left_to_eat > 0)
-		time_asleep = time_left_to_eat;
-	else
-		time_asleep = 0;
+	time_asleep = get_time_activity(philo, philo->rules.time_to_sleep);
 	if (time_asleep > 0)
 	{
 		change_philo_status(philo, SLEEPING);
