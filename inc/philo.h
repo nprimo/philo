@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 10:28:49 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/07 11:33:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_philo {
 	t_status	status;
 	t_rules		rules;
 	t_fork		*forks[2];
+	int			first_fork;
+	int			second_fork;
 }	t_philo;
 
 typedef struct s_table {
