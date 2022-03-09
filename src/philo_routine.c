@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:39:55 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 17:00:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	*philo_routine(void	*philo_void)
 	update_philo_status(philo, THINKING);
 	while (is_alive(philo)
 		&& are_all_alive(philo)
+		&& !have_all_min_meals(philo)
 		&& philo->status != ERROR)
 	{
 		if (philo->status == THINKING)
@@ -33,7 +34,8 @@ void	*philo_routine(void	*philo_void)
 		else if (philo->status == SLEEPING)
 			update_philo_status(philo, THINKING);
 	}
-	if (philo->status != ERROR)
+	if (philo->status != ERROR
+		&& !have_all_min_meals(philo))
 		update_philo_status(philo, DEAD);
 	return (NULL);
 }
