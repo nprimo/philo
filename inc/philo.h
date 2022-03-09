@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 12:47:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 15:22:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,18 @@ typedef struct s_philo {
 	t_fork			*forks[2];
 }	t_philo;
 
+typedef struct e_table_status {
+	bool			all_alive;
+	pthread_mutex_t	lock;
+}	t_table_status;
+
 typedef struct s_table {
-	t_rules		rules;
-	t_fork		*forks;
-	t_philo		*philos;
-	char		*msg[5];
-	int			time_at_start;
+	t_rules			rules;
+	t_fork			*forks;
+	t_philo			*philos;
+	char			*msg[5];
+	int				time_at_start;
+	t_table_status	status;
 }	t_table;
 
 /*---	General Purpose	---*/
@@ -87,6 +93,7 @@ void	philo_try_to_eat(t_philo *philo);
 void	*philo_routine(void	*philo_void);
 void	update_philo_status(t_philo *philo, t_philo_status new_status);
 int		get_time_activity(t_philo *philo, int time_for_activity);
+bool	are_all_alive(t_philo *philo);
 
 /*---	Cleaning		---*/
 int		free_table(void);
