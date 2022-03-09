@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:06:09 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 15:08:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*philo_routine(void	*philo_void)
 	update_philo_status(philo, THINKING);
 	while (is_alive(philo) && philo->status != ERROR)
 	{
-		if (philo->status == THINKING || philo->status == HAS_FORK)
+		if (philo->status == THINKING)
 			philo_try_to_eat(philo);
 		else if (philo->status == EATING)
 			philo_sleep(philo);
