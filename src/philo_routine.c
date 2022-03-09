@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 18:49:10 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:54:05 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 12:32:27 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*philo_routine(void	*philo_void)
 
 	philo = (t_philo *) philo_void;
 	philo->last_meal = get_time_now();
-	change_philo_status(philo, THINKING);
+	update_philo_status(philo, THINKING);
 	while (is_alive(philo) && philo->status != ERROR)
 	{
 		if (philo->status == THINKING || philo->status == HAS_FORK)
@@ -29,10 +29,10 @@ void	*philo_routine(void	*philo_void)
 		else if (philo->status == EATING)
 			philo_sleep(philo);
 		else if (philo->status == SLEEPING)
-			change_philo_status(philo, THINKING);
+			update_philo_status(philo, THINKING);
 	}
 	if (philo->status != ERROR)
-		change_philo_status(philo, DEAD);
+		update_philo_status(philo, DEAD);
 	return (NULL);
 }
 
@@ -51,7 +51,7 @@ static void	philo_sleep(t_philo *philo)
 	time_asleep = get_time_activity(philo, philo->rules.time_to_sleep);
 	if (time_asleep > 0)
 	{
-		change_philo_status(philo, SLEEPING);
+		update_philo_status(philo, SLEEPING);
 		usleep(time_asleep * MILLI_TO_MICRO);
 	}
 }
