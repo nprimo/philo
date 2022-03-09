@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:22:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 15:54:35 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_philo {
 	int				id;
 	pthread_t		tid;
 	int				last_meal;
+	int				n_meals;
 	t_philo_status	status;
 	t_rules			rules;
 	t_fork			*forks[2];
