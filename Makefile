@@ -6,14 +6,14 @@
 #    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 19:45:47 by nprimo            #+#    #+#              #
-#    Updated: 2022/03/06 17:30:23 by nprimo           ###   ########.fr        #
+#    Updated: 2022/03/09 11:48:26 by nprimo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFLAGS += --quiet
 
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra -fsanitize=thread
 RM = rm -rf
 
 NAME = philo
