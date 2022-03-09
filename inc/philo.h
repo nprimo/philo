@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/07 16:43:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 11:29:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ typedef struct s_fork {
 	pthread_mutex_t	lock;
 }	t_fork;
 
-typedef enum e_status {
+typedef enum e_philo_status {
 	THINKING = 0,
 	SLEEPING,
 	EATING,
 	HAS_FORK,
 	DEAD,
 	ERROR
-}	t_status;
+}	t_philo_status;
 
 typedef struct s_philo {
-	int			id;
-	pthread_t	tid;
-	int			last_meal;
-	t_status	status;
-	t_rules		rules;
-	t_fork		*forks[2];
+	int				id;
+	pthread_t		tid;
+	int				last_meal;
+	t_philo_status	status;
+	t_rules			rules;
+	t_fork			*forks[2];
 }	t_philo;
 
 typedef struct s_table {
@@ -83,7 +83,7 @@ int		init_table(int ac, char **av);
 int		run_simulation(void);
 void	philo_try_to_eat(t_philo *philo);
 void	*philo_routine(void	*philo_void);
-void	change_philo_status(t_philo *philo, t_status new_status);
+void	change_philo_status(t_philo *philo, t_philo_status new_status);
 int		get_time_activity(t_philo *philo, int time_for_activity);
 
 /*---	Cleaning		---*/
