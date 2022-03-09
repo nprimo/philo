@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 12:32:46 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 12:47:22 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_table {
 	t_fork		*forks;
 	t_philo		*philos;
 	char		*msg[5];
+	int			time_at_start;
 }	t_table;
 
 /*---	General Purpose	---*/
@@ -73,6 +74,7 @@ int		ft_atoi(char *str);
 void	*ft_calloc(size_t count, size_t size);
 
 /*---	Time function	---*/
+int		gettimeofday_in_ms(void);
 int		get_time_now(void);
 
 /*---	Table & Setup	---*/

@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_time_now.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com >      +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:42:58 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/01 13:33:06 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 12:45:45 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int	get_time_now(void)
+{
+	int			time_now;
+
+	time_now = gettimeofday_in_ms();
+	return (time_now - table()->time_at_start);
+}
+
+int	gettimeofday_in_ms(void)
 {
 	struct timeval	now;
 	int				now_msec;
