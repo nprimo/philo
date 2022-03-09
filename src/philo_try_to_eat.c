@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:34:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 16:44:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 17:05:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	philo_try_to_eat(t_philo *philo)
 		{
 			update_philo_status(philo, HAS_FORK);
 			philo_eat(philo);
+			if (philo->n_meals == philo->rules.num_meals_to_eat)
+				update_table_status_philos_with_min_meals(philo);
 			drop_fork(philo->forks[1], philo);
 		}
 		drop_fork(philo->forks[0], philo);
@@ -69,8 +71,6 @@ static void	philo_eat(t_philo *philo)
 	philo->last_meal = get_time_now();
 	time_eating = get_time_activity(philo, philo->rules.time_to_eat);
 	update_philo_status(philo, EATING);
-	if (philo->n_meals == philo->rules.num_meals_to_eat)
-		update_table_status_philos_with_min_meals(philo);
 	while (1)
 	{
 		if ((get_time_now() - philo->last_meal) >= time_eating)
