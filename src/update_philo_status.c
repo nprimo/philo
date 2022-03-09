@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:10:32 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:50:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 16:25:07 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	change_philo_status(t_philo *philo, t_philo_status new_status);
 static void	print_philo_status(t_philo *philo);
-static void	update_table_status(t_philo *philo);
+static void	update_table_status_all_alive(t_philo *philo);
 
 void	update_philo_status(t_philo *philo, t_philo_status new_status)
 {
@@ -27,7 +27,7 @@ static void	change_philo_status(t_philo *philo, t_philo_status new_status)
 {
 	philo->status = new_status;
 	if (new_status == DEAD && are_all_alive(philo))
-		update_table_status(philo);
+		update_table_status_all_alive(philo);
 }
 
 static void	print_philo_status(t_philo *philo)
@@ -36,7 +36,7 @@ static void	print_philo_status(t_philo *philo)
 		get_time_now(), philo->id, table()->msg[philo->status]);
 }
 
-static void	update_table_status(t_philo *philo)
+static void	update_table_status_all_alive(t_philo *philo)
 {
 	if (pthread_mutex_lock(&table()->status.lock) == 0)
 	{

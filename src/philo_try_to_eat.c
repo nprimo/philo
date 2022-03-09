@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:34:07 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:55:32 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 16:44:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static bool	get_fork(t_fork *fork, t_philo *philo);
 static void	drop_fork(t_fork *fork, t_philo *philo);
 static void	philo_eat(t_philo *philo);
+static void	update_table_status_philos_with_min_meals(t_philo *philo);
 
 void	philo_try_to_eat(t_philo *philo)
 {
@@ -68,10 +69,25 @@ static void	philo_eat(t_philo *philo)
 	philo->last_meal = get_time_now();
 	time_eating = get_time_activity(philo, philo->rules.time_to_eat);
 	update_philo_status(philo, EATING);
-	philo->n_meals++;
+	if (philo->n_meals == philo->rules.num_meals_to_eat)
+		update_table_status_philos_with_min_meals(philo);
 	while (1)
 	{
 		if ((get_time_now() - philo->last_meal) >= time_eating)
+		{
+			philo->n_meals++;
+			return ;
+		}
+	}
+}
+
+static void	update_table_status_philos_with_min_meals(t_philo *philo)
+{
+	if (pthread_mutex_lock(&table()->status.lock) == 0)
+	{
+		table()->status.philos_with_min_meals++;
+		if (pthread_mutex_unlock(&table()->status.lock) == 0)
 			return ;
 	}
+	philo->status = ERROR;
 }

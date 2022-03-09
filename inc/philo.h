@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 15:54:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/09 16:39:13 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_philo {
 
 typedef struct e_table_status {
 	bool			all_alive;
+	int				philos_with_min_meals;
 	pthread_mutex_t	lock;
 }	t_table_status;
 
@@ -94,7 +95,10 @@ void	philo_try_to_eat(t_philo *philo);
 void	*philo_routine(void	*philo_void);
 void	update_philo_status(t_philo *philo, t_philo_status new_status);
 int		get_time_activity(t_philo *philo, int time_for_activity);
+
+/*---	Philos check	---*/
 bool	are_all_alive(t_philo *philo);
+bool	have_all_min_meals(t_philo *philo);
 
 /*---	Cleaning		---*/
 int		free_table(void);
