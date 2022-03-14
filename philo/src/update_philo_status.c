@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:10:32 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 16:25:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/14 19:03:54 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@ static void	change_philo_status(t_philo *philo, t_philo_status new_status)
 
 static void	print_philo_status(t_philo *philo)
 {
-	printf("%d %d %s\n",
-		get_time_now(), philo->id, table()->msg[philo->status]);
+	if (pthread_mutex_lock(&table()->lock_print) == 0)
+	{
+		printf("%d %d %s\n",
+			get_time_now(), philo->id, table()->msg[philo->status]);
+		if (pthread_mutex_unlock(&table()->lock_print) == 0)
+			return ;
+	}
+	philo->status = ERROR;
 }
 
 static void	update_table_status_all_alive(t_philo *philo)

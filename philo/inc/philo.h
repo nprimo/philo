@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:23:54 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/09 16:39:13 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/14 19:00:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_table {
 	t_philo			*philos;
 	char			*msg[5];
 	int				time_at_start;
+	pthread_mutex_t	lock_print;
 	t_table_status	status;
 }	t_table;
 
