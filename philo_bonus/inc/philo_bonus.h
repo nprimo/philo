@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:44:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/14 14:01:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/14 16:42:24 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct s_table {
 /*---	General Purpose	---*/
 int		ft_atoi(char *str);
 void	*ft_calloc(size_t count, size_t size);
+
+/*---	Time function	---*/
+int		get_time_now(void);
 
 /*---	Table & Setup	---*/
 int		init_table(int ac, char **av);
