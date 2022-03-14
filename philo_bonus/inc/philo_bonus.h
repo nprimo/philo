@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:44:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/14 16:42:24 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/14 16:47:24 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_table	*table(void);
 
 /*---	Simulation		---*/
 int		run_simulation(void);
+int		philo_routine(int id);
 
 /*---	Cleaning		---*/
 int		free_table(void);

@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:09:42 by nprimo            #+#    #+#             */
-/*   Updated: 2022/03/14 16:35:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/03/14 16:48:34 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	run_simulation(void)
 
 static int	start_routine(int pid, int i)
 {
+	int	philo_id;
+
+	philo_id = i + 1;
 	if (pid == -1)
 		return (0);
 	if (pid != 0)
@@ -50,6 +53,6 @@ static int	start_routine(int pid, int i)
 			i, table()->philos_pid[i]);
 	}
 	else
-		printf("Run philo_routine for philo %d \n", i);
+		philo_routine(philo_id);
 	return (1);
 }
